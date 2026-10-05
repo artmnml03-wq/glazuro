@@ -209,7 +209,14 @@ details p{margin-top:10px;font-size:15px}
   .wrap{padding:0 16px}
   section{padding:70px 0}
   .hd-r .tel{display:none}
-  .steps,.grid4{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .step{display:grid;grid-template-columns:110px 1fr}
+  .step .pic{aspect-ratio:auto;font-size:40px}.step .pic small{display:none}
+  .step .tx{padding:14px 16px}.step h4{font-size:17px}
+  .grid4{grid-template-columns:1fr 1fr;gap:12px}
+  .card .tx{padding:14px}.card h4{font-size:16px}.card p{font-size:13px}
+  .card .more{padding:10px;font-size:12px;flex-wrap:wrap;gap:4px}
+  .head2{gap:0}
   .work{grid-template-columns:1fr;flex-basis:88%}
   .work .pic{min-height:220px}
   .gl{grid-template-columns:64px 1fr}.gl svg{width:64px}.gl .btn{grid-column:1/-1;justify-content:center}
@@ -541,7 +548,7 @@ document.getElementById('track').innerHTML=works.map(w=>{
 document.querySelectorAll('.work .pic svg').forEach(s=>{s.style.position='static';s.style.width='100%'});
 const track=document.getElementById('track');
 function slide(d){const c=track.querySelector('.work');track.scrollBy({left:d*(c.offsetWidth+20),behavior:'smooth'})}
-track.addEventListener('scroll',()=>{const c=track.querySelector('.work');const i=Math.round(track.scrollLeft/(c.offsetWidth+20));const per=Math.max(1,Math.round(track.offsetWidth/(c.offsetWidth+20)));document.getElementById('cnt').textContent=`${i+1}${per>1?'–'+Math.min(i+per,works.length):''} / ${works.length}`});
+const upd=()=>{const c=track.querySelector('.work');const i=Math.round(track.scrollLeft/(c.offsetWidth+20));const per=Math.max(1,Math.round(track.offsetWidth/(c.offsetWidth+20)));document.getElementById('cnt').textContent=`${i+1}${per>1?'–'+Math.min(i+per,works.length):''} / ${works.length}`};track.addEventListener('scroll',upd);addEventListener('resize',upd);upd();
 
 /* bakery tiles */
 const tiles=[];for(let i=0;i<12;i++){const g=['#f29bb6','#4a2618','#fff3d6','#d8954a','#b5cf86',null][i%6];tiles.push(donut({glaze:g,top:g?['sprinkles','nuts','berries',null,'crumbs'][i%5]:'sugar',seed:70+i}))}
